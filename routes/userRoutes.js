@@ -19,7 +19,7 @@ router.get(
   authorizePermissions('admin', 'manager'),
   getAllUsers
 )
-router.get('/showMe', showCurrentUser)
+router.get('/showMe', authenticateUser, showCurrentUser)
 router.patch('/updateUser', updateUser)
 router.patch('/updateUserPassword', updateUserPassword)
 router.get('/:id', authenticateUser, getSingleUser)

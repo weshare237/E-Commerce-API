@@ -21,13 +21,16 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Please provide password'],
-    minlength: 8,
+    validate: {
+      validator: validator.isStrongPassword,
+      message: 'Please provide a strong password',
+    },
   },
   role: {
     type: String,
     enum: {
       values: ['user', 'admin'],
-      message: '{VALUE} not supported',
+      message: '{VALUE} is not supported',
     },
     default: 'user',
     required: true,
